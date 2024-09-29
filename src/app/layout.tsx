@@ -1,17 +1,5 @@
-import { SaltProvider } from "@salt-ds/core";
 import type { Metadata } from "next";
-import { Open_Sans, PT_Mono } from "next/font/google";
-import "@salt-ds/theme/index.css";
-
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  variable: "--font-open-sans",
-});
-const ptMono = PT_Mono({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-pt-mono",
-});
+import { Salt } from "./providers/Salt";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,8 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${openSans.variable} ${ptMono.variable}`}>
-        <SaltProvider>{children}</SaltProvider>
+      <body>
+        <Salt>{children}</Salt>
       </body>
     </html>
   );
