@@ -1,16 +1,16 @@
+import { SaltProvider } from "@salt-ds/core";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
+import { Open_Sans, PT_Mono } from "next/font/google";
+import "@salt-ds/theme/index.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-open-sans",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const ptMono = PT_Mono({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-pt-mono",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${openSans.variable} ${ptMono.variable}`}>
+        <SaltProvider>{children}</SaltProvider>
+      </body>
     </html>
   );
 }
