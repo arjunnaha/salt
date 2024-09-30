@@ -15,5 +15,9 @@ const ptMono = PT_Mono({
 });
 
 export function Salt({ children }: { children: React.ReactNode }) {
-  return <SaltProvider theme={classnames(ptMono.variable, openSans.variable)}>{children}</SaltProvider>;
+  return (
+    <SaltProvider theme={classnames(ptMono.variable, openSans.variable)} density="low">
+      {children}
+    </SaltProvider>
+  );
 }

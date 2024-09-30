@@ -1,3 +1,7 @@
+body {
+	margin: 0;
+}
+
 .salt-theme[data-mode="light"] {
 	--site-tertiary-accent-green: var(--salt-color-green-500);
 	--site-tertiary-accent-teal: var(--salt-color-teal-500);
