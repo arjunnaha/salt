@@ -7,12 +7,11 @@ import {
   H2,
   NavigationItem,
   StackLayout,
-  Text,
   Tooltip,
   useResponsiveProp,
 } from "@salt-ds/core";
 import { CloseIcon, GithubIcon, MenuIcon, PdfIcon } from "@salt-ds/icons";
-import { type FC, type ReactNode, useState } from "react";
+import { type FC, type ReactNode, useEffect, useState } from "react";
 import styles from "./Header.module.css";
 
 const items = ["Work Experience", "Education", "Scholarships & Awards", "Projects", "Technical Skills"];
@@ -68,11 +67,12 @@ const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
 const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [active, setActive] = useState(items?.[0]);
+  const offset = useOffset();
+
   const handleClick = (item: string) => {
     setActive(item);
     setDrawerOpen(false);
   };
-  const offset = useOffset();
 
   return (
     <header>
@@ -106,11 +106,12 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
       <Drawer
         className={styles.mobileDrawerHeader}
         open={drawerOpen}
-        onOpenChange={() => {
-          if (drawerOpen) {
-            setDrawerOpen(false);
-          }
-        }}
+        // TODO: Fix this
+        // onOpenChange={() => {
+        //   if (drawerOpen) {
+        //     setDrawerOpen(false);
+        //   }
+        // }}
       >
         <nav>
           <ul className={styles.mobileDrawerNavList}>
@@ -120,9 +121,7 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
                   orientation="vertical"
                   active={active === item}
                   href="#"
-                  onClick={() => {
-                    handleClick(item);
-                  }}
+                  onClick={() => handleClick(item)}
                 >
                   {item}
                 </NavigationItem>
@@ -131,13 +130,7 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
 
             {buttons?.map((utility) => (
               <li key={utility.key}>
-                <NavigationItem
-                  orientation="vertical"
-                  href={utility.link}
-                  onClick={() => {
-                    setDrawerOpen(false);
-                  }}
-                >
+                <NavigationItem orientation="vertical" href={utility.link} onClick={() => setDrawerOpen(false)}>
                   {utility.icon}
                   {utility.key}
                 </NavigationItem>
