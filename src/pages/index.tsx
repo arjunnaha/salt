@@ -1,10 +1,5 @@
-import { Header } from "@/components/Header";
-import { Button } from "@salt-ds/core";
+import { HomePage } from "@/features/home";
 
-export default function Home() {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+export default function Root() {
+  return <HomePage />;
 }

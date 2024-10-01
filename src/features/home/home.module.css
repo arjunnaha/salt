@@ -1,0 +1,5 @@
+.main {
+	max-width: 1200px;
+	padding: var(--salt-spacing-300);
+	margin: 0 auto;
+}

@@ -1,10 +1,14 @@
+.header {
+	position: sticky;
+	top: 0;
+}
+
 .desktopHeader {
 	border-bottom: var(--salt-size-border) var(--salt-separable-borderStyle)
 		var(--salt-separable-primary-borderColor);
 	padding-left: var(--salt-spacing-300);
 	padding-right: var(--salt-spacing-300);
 	background-color: var(--salt-container-primary-background);
-	position: fixed;
 	width: 100%;
 	box-shadow: none;
 	transition: box-shadow 0.3s ease;

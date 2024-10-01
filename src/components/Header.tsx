@@ -30,7 +30,7 @@ const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
   const offset = useOffset();
 
   return (
-    <header>
+    <header className={styles.header}>
       <FlexLayout align="center" justify="space-between" className={styles.desktopHeader} data-is-offset={offset > 0}>
         <FlexItem>
           <H2>Arjun Naha</H2>
@@ -75,7 +75,7 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
   };
 
   return (
-    <header>
+    <header className={styles.header}>
       <StackLayout direction="row" gap={3} className={styles.mobileHeader} data-is-offset={offset > 0}>
         <FlexItem className={styles.mobileHeaderControl}>
           {!drawerOpen && (
