@@ -11,7 +11,9 @@ export function Section({ name, children }: SectionProps) {
 
   return (
     <div className={styles.section} data-mobile={isMobile}>
-      <H1 className={styles.title}>{name}</H1>
+      <H1 className={styles.title} id="section-title">
+        {name}
+      </H1>
       <div className={styles.content}>{children}</div>
     </div>
   );

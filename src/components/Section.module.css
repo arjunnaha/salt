@@ -1,7 +1,8 @@
 .section {
-	margin-bottom: var(--salt-spacing-300);
+	margin-bottom: var(--salt-spacing-400);
 	display: flex;
 	flex-direction: row;
+	width: 100%;
 }
 
 .section[data-mobile="true"] {
@@ -10,8 +11,9 @@
 
 .title {
 	padding-bottom: var(--salt-spacing-200);
-	flex-grow: 1;
+	width: 300px;
 	flex-shrink: 0;
+	z-index: -1;
 }
 
 .title::after {
@@ -24,6 +26,7 @@
 }
 
 .content {
+	flex-grow: 1;
 	margin-left: var(--salt-spacing-400);
 	margin-top: var(--salt-spacing-200);
 }

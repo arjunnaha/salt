@@ -75,7 +75,7 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
   };
 
   return (
-    <header className={styles.header}>
+    <header>
       <StackLayout direction="row" gap={3} className={styles.mobileHeader} data-is-offset={offset > 0}>
         <FlexItem className={styles.mobileHeaderControl}>
           {!drawerOpen && (

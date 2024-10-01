@@ -4,7 +4,7 @@ import styles from "./Item.module.css";
 type ItemProps = {
   logo: string;
   company: string;
-  position: string;
+  position?: string;
   date: string;
   location: string;
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export function Item(props: ItemProps) {
   const { logo, company, position, date, location, children } = props;
 
   return (
-    <div className={styles.item}>
+    <div>
       <div className={styles.itemHeader}>
         <div className={styles.itemHeaderCompany}>
           <Avatar src={logo} name={company} className={styles.itemHeaderLogo} />
@@ -24,15 +24,13 @@ export function Item(props: ItemProps) {
           </div>
         </div>
 
-        <div>
-          <div>
-            <em>{date}</em>
-          </div>
+        <div className={styles.right}>
+          <em>{date}</em>
         </div>
       </div>
 
       <div className={styles.itemContent}>
-        <H3 className={styles.position}>{position}</H3>
+        {position ? <H3 className={styles.position}>{position}</H3> : null}
         <div>{children}</div>
       </div>
     </div>

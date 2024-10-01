@@ -1,7 +1,3 @@
-.item {
-	/* display: flex; */
-}
-
 .itemHeader {
 	display: flex;
 	gap: var(--salt-spacing-200);
@@ -18,10 +14,16 @@
 .itemHeaderCompanyName {
 	margin-top: 0;
 	margin-bottom: 2px;
+	white-space: pre-wrap;
+}
+
+.right {
+	text-align: right;
 }
 
 .itemContent {
 	margin-top: var(--salt-spacing-50);
+	width: 100%;
 }
 
 .itemContent ul {
