@@ -5,6 +5,9 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useRef } from "react";
 import styles from "./home.module.css";
 import { Education } from "./sections/Education";
+import { Projects } from "./sections/Projects";
+import { Scholarships } from "./sections/Scholarships";
+import { Skills } from "./sections/Skills";
 import { WorkExperience } from "./sections/WorkExperience";
 
 gsap.registerPlugin(useGSAP);
@@ -35,6 +38,9 @@ export function HomePage() {
       <main className={styles.main}>
         <WorkExperience />
         <Education />
+        <Scholarships />
+        <Projects />
+        <Skills />
       </main>
     </div>
   );

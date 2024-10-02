@@ -2,10 +2,10 @@ import { Avatar, H2, H3, H4 } from "@salt-ds/core";
 import styles from "./Item.module.css";
 
 type ItemProps = {
-  logo: string;
+  logo?: string;
   company: string;
   position?: string;
-  date: string;
+  date?: string;
   location: string;
   children: React.ReactNode;
 };
@@ -17,16 +17,14 @@ export function Item(props: ItemProps) {
     <div>
       <div className={styles.itemHeader}>
         <div className={styles.itemHeaderCompany}>
-          <Avatar src={logo} name={company} className={styles.itemHeaderLogo} />
+          {logo ? <Avatar src={logo} name={company} className={styles.itemHeaderLogo} /> : null}
           <div>
             <H3 className={styles.itemHeaderCompanyName}>{company}</H3>
             <div>{location}</div>
           </div>
         </div>
 
-        <div className={styles.right}>
-          <em>{date}</em>
-        </div>
+        <div className={styles.right}>{date ? <em>{date}</em> : null}</div>
       </div>
 
       <div className={styles.itemContent}>
