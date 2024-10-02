@@ -11,23 +11,53 @@ import {
   useResponsiveProp,
 } from "@salt-ds/core";
 import { CloseIcon, GithubIcon, MenuIcon, PdfIcon } from "@salt-ds/icons";
-import { type FC, type ReactNode, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { type FC, type ReactNode, useState } from "react";
 import styles from "./Header.module.css";
 
-const items = ["Work Experience", "Education", "Scholarships & Awards", "Projects", "Technical Skills"];
+const items = [
+  {
+    label: "Work Experience",
+    id: "work",
+  },
+  {
+    label: "Education",
+    id: "education",
+  },
+  {
+    label: "Scholarships & Awards",
+    id: "scholarships",
+  },
+  {
+    label: "Projects",
+    id: "projects",
+  },
+  {
+    label: "Technical Skills",
+    id: "skills",
+  },
+];
+
 const buttons = [
   { icon: <PdfIcon />, key: "CV", link: "https://www.arjun.so/cv" },
   { icon: <GithubIcon />, key: "GitHub", link: "https://github.com/arjunnaha/salt" },
 ];
 
 interface HeaderProps {
-  items?: string[];
+  items: { label: string; id: string }[];
   buttons?: { icon: ReactNode; key: string; link: string }[];
 }
 
 const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
-  const [active, setActive] = useState(items?.[0]);
+  const [active, setActive] = useState(items?.[0].id);
   const offset = useOffset();
+  const router = useRouter();
+
+  const onClick = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    router.push(`#${id}`);
+    setActive(id);
+  };
 
   return (
     <header className={styles.header}>
@@ -39,9 +69,9 @@ const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
         <FlexItem align="center">
           <nav>
             <ul className={styles.desktopHeaderNavList}>
-              {items?.map((item) => (
-                <NavigationItem key={item} active={active === item} onClick={() => setActive(item)}>
-                  {item}
+              {items?.map(({ label, id }) => (
+                <NavigationItem key={id} active={active === id} onClick={() => onClick(id)}>
+                  {label}
                 </NavigationItem>
               ))}
             </ul>
@@ -66,11 +96,11 @@ const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
 
 const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [active, setActive] = useState(items?.[0]);
+  const [active, setActive] = useState(items?.[0].id);
   const offset = useOffset();
 
-  const handleClick = (item: string) => {
-    setActive(item);
+  const handleClick = (id: string) => {
+    setActive(id);
     setDrawerOpen(false);
   };
 
@@ -115,15 +145,10 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
       >
         <nav>
           <ul className={styles.mobileDrawerNavList}>
-            {items?.map((item) => (
-              <li key={item}>
-                <NavigationItem
-                  orientation="vertical"
-                  active={active === item}
-                  href="#"
-                  onClick={() => handleClick(item)}
-                >
-                  {item}
+            {items?.map(({ label, id }) => (
+              <li key={id}>
+                <NavigationItem orientation="vertical" active={active === id} href="#" onClick={() => handleClick(id)}>
+                  {label}
                 </NavigationItem>
               </li>
             ))}

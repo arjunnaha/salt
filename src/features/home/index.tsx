@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import dynamic from "next/dynamic";
 import { useRef } from "react";
 import styles from "./home.module.css";
 import { Education } from "./sections/Education";
@@ -12,6 +13,10 @@ import { WorkExperience } from "./sections/WorkExperience";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
+
+const NoSsrHeader = dynamic(() => Promise.resolve(Header), {
+  ssr: false,
+});
 
 export function HomePage() {
   const container = useRef<HTMLDivElement>(null);
@@ -33,7 +38,7 @@ export function HomePage() {
 
   return (
     <div ref={container}>
-      <Header />
+      <NoSsrHeader />
 
       <main className={styles.main}>
         <WorkExperience />

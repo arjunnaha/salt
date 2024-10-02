@@ -4,7 +4,7 @@ import { Section } from "@/components/Section";
 
 export function Scholarships() {
   return (
-    <Section name="Scholarships">
+    <Section name="Scholarships" id="scholarships">
       <ItemsList>
         <Item
           logo="/images/apple.png"

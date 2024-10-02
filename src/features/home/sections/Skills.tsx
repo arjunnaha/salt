@@ -4,7 +4,7 @@ import { Section } from "@/components/Section";
 
 export function Skills() {
   return (
-    <Section name="Skills">
+    <Section name="Skills" id="skills">
       <ItemsList>
         <div>
           <strong>Languages:</strong> TypeScript/JavaScript, Python, Java, Swift, HTML, CSS/Sass

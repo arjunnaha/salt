@@ -4,7 +4,7 @@ import { Section } from "@/components/Section";
 
 export function Projects() {
   return (
-    <Section name="Projects">
+    <Section name="Projects" id="projects">
       <ItemsList>
         <Item company="HYPED, Edinburgh Hyperloop" date="Sep 2021 – Present" location="Embedded hardware and software">
           <ul>

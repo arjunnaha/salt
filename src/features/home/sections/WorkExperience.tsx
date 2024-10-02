@@ -5,7 +5,7 @@ import { Text } from "@salt-ds/core";
 
 export function WorkExperience() {
   return (
-    <Section name="Work Experience">
+    <Section name="Work Experience" id="work">
       <ItemsList>
         <Item
           logo="/images/naha-digital.png"
