@@ -11,31 +11,16 @@ import {
   useResponsiveProp,
 } from "@salt-ds/core";
 import { CloseIcon, GithubIcon, MenuIcon, PdfIcon } from "@salt-ds/icons";
-import { useRouter } from "next/router";
+import { type NextRouter, useRouter } from "next/router";
 import { type FC, type ReactNode, useState } from "react";
 import styles from "./Header.module.css";
 
 const items = [
-  {
-    label: "Work Experience",
-    id: "work",
-  },
-  {
-    label: "Education",
-    id: "education",
-  },
-  {
-    label: "Scholarships & Awards",
-    id: "scholarships",
-  },
-  {
-    label: "Projects",
-    id: "projects",
-  },
-  {
-    label: "Technical Skills",
-    id: "skills",
-  },
+  { label: "Work Experience", id: "work" },
+  { label: "Education", id: "education" },
+  { label: "Scholarships & Awards", id: "scholarships" },
+  { label: "Projects", id: "projects" },
+  { label: "Technical Skills", id: "skills" },
 ];
 
 const buttons = [
@@ -48,16 +33,14 @@ interface HeaderProps {
   buttons?: { icon: ReactNode; key: string; link: string }[];
 }
 
+const onClick = (id: string, router: NextRouter) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  router.push(`#${id}`, undefined, { shallow: true });
+};
+
 const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
-  const [active, setActive] = useState(items?.[0].id);
   const offset = useOffset();
   const router = useRouter();
-
-  const onClick = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    router.push(`#${id}`);
-    setActive(id);
-  };
 
   return (
     <header className={styles.header}>
@@ -70,7 +53,7 @@ const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
           <nav>
             <ul className={styles.desktopHeaderNavList}>
               {items?.map(({ label, id }) => (
-                <NavigationItem key={id} active={active === id} onClick={() => onClick(id)}>
+                <NavigationItem key={id} onClick={() => onClick(id, router)}>
                   {label}
                 </NavigationItem>
               ))}
@@ -96,36 +79,25 @@ const DesktopAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
 
 const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [active, setActive] = useState(items?.[0].id);
   const offset = useOffset();
+  const router = useRouter();
 
   const handleClick = (id: string) => {
-    setActive(id);
     setDrawerOpen(false);
+    onClick(id, router);
   };
 
   return (
     <header>
       <StackLayout direction="row" gap={3} className={styles.mobileHeader} data-is-offset={offset > 0}>
         <FlexItem className={styles.mobileHeaderControl}>
-          {!drawerOpen && (
-            <Button
-              onClick={() => setDrawerOpen(true)}
-              className={styles.mobileHeaderControlButton}
-              appearance="transparent"
-            >
-              <MenuIcon />
-            </Button>
-          )}
-          {drawerOpen && (
-            <Button
-              onClick={() => setDrawerOpen(false)}
-              className={styles.mobileHeaderControlButton}
-              appearance="transparent"
-            >
-              <CloseIcon />
-            </Button>
-          )}
+          <Button
+            onClick={() => setDrawerOpen(!drawerOpen)}
+            className={styles.mobileHeaderControlButton}
+            appearance="transparent"
+          >
+            {drawerOpen ? <CloseIcon /> : <MenuIcon />}
+          </Button>
         </FlexItem>
 
         <FlexItem align="center">
@@ -133,21 +105,12 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
         </FlexItem>
       </StackLayout>
 
-      <Drawer
-        className={styles.mobileDrawerHeader}
-        open={drawerOpen}
-        // TODO: Fix this
-        // onOpenChange={() => {
-        //   if (drawerOpen) {
-        //     setDrawerOpen(false);
-        //   }
-        // }}
-      >
+      <Drawer className={styles.mobileDrawerHeader} open={drawerOpen} onOpenChange={setDrawerOpen}>
         <nav>
           <ul className={styles.mobileDrawerNavList}>
             {items?.map(({ label, id }) => (
               <li key={id}>
-                <NavigationItem orientation="vertical" active={active === id} href="#" onClick={() => handleClick(id)}>
+                <NavigationItem orientation="vertical" href="#" onClick={() => handleClick(id)}>
                   {label}
                 </NavigationItem>
               </li>
