@@ -1,0 +1,11 @@
+.itemsList {
+	display: flex;
+	flex-direction: column;
+	gap: var(--salt-spacing-250);
+}
+
+@media screen and (max-width: 959px) {
+	.itemsList {
+		gap: var(--salt-spacing-200);
+	}
+}

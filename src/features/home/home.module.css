@@ -1,0 +1,12 @@
+.main {
+	max-width: 1200px;
+	padding: var(--salt-spacing-300);
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 959px) {
+	.main {
+		padding: var(--salt-spacing-200);
+		padding-top: var(--salt-spacing-400);
+	}
+}

@@ -1,9 +1,5 @@
-import { Button } from "@salt-ds/core";
+import { HomePage } from "@/features/home";
 
-export default function Home() {
-  return (
-    <div>
-      <Button>Hello</Button>
-    </div>
-  );
+export default function Root() {
+  return <HomePage />;
 }
