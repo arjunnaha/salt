@@ -5,10 +5,6 @@
 	width: 100%;
 }
 
-.section[data-mobile="true"] {
-	flex-direction: column;
-}
-
 .title {
 	padding-bottom: var(--salt-spacing-200);
 	width: 300px;
@@ -29,4 +25,20 @@
 	flex-grow: 1;
 	margin-left: var(--salt-spacing-400);
 	margin-top: var(--salt-spacing-200);
+}
+
+@media screen and (max-width: 959px) {
+	.section {
+		flex-direction: column;
+		margin-bottom: var(--salt-spacing-200);
+	}
+
+	.title {
+		padding-bottom: 0;
+	}
+
+	.content {
+		margin-left: 0;
+		margin-top: 0;
+	}
 }

@@ -8,10 +8,8 @@ type SectionProps = {
 };
 
 export function Section({ name, id, children }: SectionProps) {
-  const isMobile = useResponsiveProp({ xs: true, md: false }, false);
-
   return (
-    <section className={styles.section} data-mobile={isMobile} id={id}>
+    <section className={styles.section} id={id}>
       <H1 className={styles.title} id="section-title">
         {name}
       </H1>
