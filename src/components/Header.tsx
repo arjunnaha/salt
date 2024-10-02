@@ -105,12 +105,12 @@ const MobileAppHeader: FC<HeaderProps> = ({ items, buttons }) => {
         </FlexItem>
       </StackLayout>
 
-      <Drawer className={styles.mobileDrawerHeader} open={drawerOpen} onOpenChange={setDrawerOpen}>
+      <Drawer className={styles.mobileDrawerHeader} open={drawerOpen}>
         <nav>
           <ul className={styles.mobileDrawerNavList}>
             {items?.map(({ label, id }) => (
               <li key={id}>
-                <NavigationItem orientation="vertical" href="#" onClick={() => handleClick(id)}>
+                <NavigationItem orientation="vertical" onClick={() => handleClick(id)}>
                   {label}
                 </NavigationItem>
               </li>
